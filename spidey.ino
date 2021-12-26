@@ -3,7 +3,9 @@ Code for Spidey - Bluetooth controlled Quadruped robot
 By Shivanng Puri
 Link: https://github.com/shxvxnng/spidey
 */
-
+int rate = 1;
+int dir_x = 0;
+int dir_y = 0;
 //============Bluetooth Setup============
 #define BLYNK_USE_DIRECT_CONNECT
 #include <SoftwareSerial.h>
@@ -30,8 +32,9 @@ struct joint{
 // ======================================
 
 
-void setup()
-{
+void setup(){
+  //=====set legs to neutral position====
+  neutral();
   //==========Servo Declaration==========
   pwm.begin();
   pwm.setPWMFreq(1000);
@@ -50,14 +53,53 @@ void setup()
   Blynk.begin(Serial, auth);
 }
 
-void loop()
-{
-  //servo sweep loop
+void loop(){
+  walk();
+  Blynk.run();
+}
+
+//==============Logic to decide the direction=============
+void walk(){
+  if(dir_y > 64){
+    walk_fwd();
+  }
+  if(dir_y < -64){
+    walk_back();
+  }
+  if(dir_x > 64){
+    walk_right();
+  }
+  if(dir_x < -64){
+    walk_left();
+  }
+}
+//===========Blynk Virtual Pin Read function==============
+//This fucntion gets called every time the Virtual Pin V0 changes state
+BLYNK_WRITE(V0){
+  dir_x = param[0].asInt();
+  dir_y = param[1].asInt();
+}
+//========================================================
+
+//======Logics for moving in respective directions========
+void walk_fwd(){
   for (uint8_t pin=0; pin<16; pin++) {
     pwm.setPWM(pin, 4096, 0);       // turns pin fully on
     delay(100);
     pwm.setPWM(pin, 0, 4096);       // turns pin fully off
   }
+}
+
+void neutral(){
   
-  Blynk.run();
+}
+void walk_back(){
+  
+}
+
+void walk_right(){
+  
+}
+void walk_left(){
+  
 }
