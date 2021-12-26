@@ -36,6 +36,11 @@ void setup()
   pwm.begin();
   pwm.setPWMFreq(1000);
   Wire.setClock(400000);
+
+  Fr.A.adr = 11;  Fr.B.adr = 3;  Fr.C.adr = 7;
+  Fl.A.adr = 8;  Fl.B.adr = 0;  Fl.C.adr = 4;
+  Br.A.adr = 9;  Br.B.adr = 1;  Br.C.adr = 5;
+  Bl.A.adr = 10;  Bl.B.adr = 2;  Bl.C.adr = 6;
   //=====================================
   // Debug console
   DebugSerial.begin(9600);
