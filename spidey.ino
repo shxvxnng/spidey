@@ -185,45 +185,45 @@ void extend(int leg){
 
 void flex(int leg){
   if(leg == 1 || leg == 2){
-    for (int i = 60; i>= 30; i--){
-    leg_write(leg, 30, i, i);
+    for (int i = 90; i>= 30; i--){
+    leg_write(leg, 30, i, i-30);
     delay(10);
   }
   delay(1000);
   for(int i = 30; i <= 90; i++){
-    leg_write(leg, i, 30, 30);
+    leg_write(leg, i, 30, 0);
     delay(10);
   }
   delay(1000);
-  for (int i = 30; i<= 60; i++){
-    leg_write(leg, 90, i, i);
+  for (int i = 30; i<= 90; i++){
+    leg_write(leg, 90, i, i - 30);
     delay(10);
   }
   delay(1000);
   for(int i = 90; i >= 30; i--){
-    leg_write(leg, i, 60, 60);
+    leg_write(leg, i, 90, 60);
     delay(10);
   }
   delay(1000);
   }
   else{
-    for (int i = 90; i<= 150; i++){
-    leg_write(leg, 150, i, i + 10);
+    for (int i = 60; i<= 150; i++){
+    leg_write(leg, 150, i, i + 30);
     delay(10);
   }
   delay(1000);
   for(int i = 150; i >= 90; i--){
-    leg_write(leg, i, 150, 160);
+    leg_write(leg, i, 150, 180);
     delay(10);
   }
   delay(1000);
   for (int i = 150; i>= 90; i--){
-    leg_write(leg, 90, i, i + 10);
+    leg_write(leg, 90, i, 180);
     delay(10);
   }
   delay(1000);
   for(int i = 90; i <= 150; i++){
-    leg_write(leg, i, 90, 100);
+    leg_write(leg, i, 90, 180);
     delay(10);
   }
   delay(1000);
